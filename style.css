@@ -1,0 +1,224 @@
+:root {
+  --bg-color: #1e1e1e;
+  --header-bg: #1e1e1e;
+  --text-color: #fff;
+  --link-color: #00ff87;
+  --link-hover: #fff;
+  --progress-bg: #444;
+  --progress-fill: #00ff87;
+  --task-bg: #1a1a1a;
+  --task-shadow: rgba(0,0,0,0.5);
+  --task-header: #00ffcc;
+  --list-item-bg: #2a2a2a;
+  --list-item-hover: #3a3a3a;
+  --details-color: #ccc;
+  --border-color: #333;
+}
+
+[data-theme="light"] {
+  --bg-color: #f5f5f5;
+  --header-bg: #f0f0f0;
+  --text-color: #333;
+  --link-color: #0d7d43;
+  --link-hover: #000;
+  --progress-bg: #ddd;
+  --progress-fill: #0d9d58;
+  --task-bg: #fff;
+  --task-shadow: rgba(0,0,0,0.1);
+  --task-header: #0d8067;
+  --list-item-bg: #e9e9e9;
+  --list-item-hover: #dadada;
+  --details-color: #555;
+  --border-color: #ddd;
+}
+
+body, html {
+  margin: 0;
+  min-height: 100vh;
+  background-color: var(--bg-color);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  font-family: 'Montserrat', sans-serif;
+  text-align: center;
+  color: var(--text-color);
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+header {
+  width: 100%;
+  background-color: var(--header-bg);
+  padding: 1em 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  position: fixed;
+  top: 0;
+  z-index: 100;
+  transition: background-color 0.3s ease;
+}
+
+nav a {
+  color: var(--link-color);
+  text-decoration: none;
+  margin: 0 1em;
+  font-weight: bold;
+  transition: color 0.3s ease;
+}
+
+nav a:hover {
+  color: var(--link-hover);
+}
+
+.container {
+  padding: 2em;
+  max-width: 1200px;
+  margin: 80px auto 20px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.progress-container {
+  width: 100%;
+  background: var(--progress-bg);
+  border-radius: 10px;
+  margin: 1em 0;
+  transition: background-color 0.3s ease;
+}
+
+.progress-bar {
+  height: 30px;
+  background-color: var(--progress-fill);
+  border-radius: 10px;
+  line-height: 30px;
+  padding-left: 10px;
+  color: #111;
+  font-weight: bold;
+  transition: background-color 0.3s ease;
+}
+
+.task-lists {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 2em;
+  margin-top: 2em;
+  flex-wrap: wrap;
+}
+
+.task-column {
+  flex: 1 1 48%;
+  background: var(--task-bg);
+  padding: 1em;
+  border-radius: 12px;
+  box-shadow: 0 0 10px var(--task-shadow);
+  min-width: 300px;
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.task-column h2 {
+  text-align: center;
+  margin-bottom: 1em;
+  color: var(--task-header);
+  transition: color 0.3s ease;
+}
+
+.changelog-list {
+  list-style: none;
+  padding: 0;
+  text-align: left;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.changelog-list li {
+  background-color: var(--list-item-bg);
+  padding: 0.75em;
+  margin-bottom: 0.5em;
+  border-radius: 8px;
+  color: var(--text-color);
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.3s ease, color 0.3s ease;
+  flex: 0 0 48%;
+  box-sizing: border-box;
+}
+
+.changelog-list li:hover {
+  background-color: var(--list-item-hover);
+}
+
+.changelog-details {
+  display: none;
+  font-size: 0.9em;
+  color: var(--details-color);
+  margin-top: 0.5em;
+  transition: color 0.3s ease;
+}
+
+/* Rainbow text animation */
+.rainbow-text {
+  font-size: 2.5em;
+  font-weight: 700;
+  background: linear-gradient(270deg, 
+    #ff0066, #ff6600, #ffcc00, #33cc33, 
+    #00ccff, #338aff, #a23bff, #ff0066);
+  background-size: 1200% 1200%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: gradientFlow 10s linear infinite;
+}
+
+@keyframes gradientFlow {
+  0% { background-position: 0% 50%; }
+  100% { background-position: 100% 50%; }
+}
+
+.theme-toggle {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background-color: var(--task-bg);
+  box-shadow: 0 0 10px var(--task-shadow);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  z-index: 1000;
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.theme-toggle svg {
+  width: 24px;
+  height: 24px;
+  fill: var(--text-color);
+  transition: fill 0.3s ease;
+}
+
+* {
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
+}
+
+li:focus,
+li:active {
+  outline: none;
+  transform: none !important;
+}
+
+@media (max-width: 768px) {
+  .changelog-list li {
+    flex: 0 0 100%;
+  }
+  
+  .task-column {
+    flex: 1 1 100%;
+  }
+}

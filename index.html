@@ -1,100 +1,82 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="dark">
 <head>
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>One Way Dream development progress</title>
-  <style>
-    body, html {
-      margin: 0;
-      padding: 0;
-      font-family: 'Segoe UI', sans-serif;
-      background: #111;
-      color: #fff;
-    }
-
-    header {
-      background: #222;
-      padding: 1em 2em;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-
-    header h1 {
-      margin: 0;
-      font-size: 1.5em;
-    }
-
-    nav a {
-      color: #00ff87;
-      text-decoration: none;
-      margin-left: 1em;
-      font-weight: bold;
-      transition: color 0.3s ease;
-    }
-
-    nav a:hover {
-      color: #fff;
-    }
-
-    .container {
-      padding: 2em;
-      max-width: 800px;
-      margin: auto;
-    }
-
-    .progress-container {
-      width: 100%;
-      background: #444;
-      border-radius: 10px;
-      margin: 1em 0;
-    }
-
-    .progress-bar {
-      height: 30px;
-      background-color: #00ff87;
-      border-radius: 10px;
-      line-height: 30px;
-      padding-left: 10px;
-      color: #111;
-      font-weight: bold;
-    }
-
-    .changelog-list {
-      list-style: none;
-      padding-left: 0;
-    }
-
-    .changelog-list li {
-      padding: 0.5em 0;
-      border-bottom: 1px solid #333;
-    }
-  </style>
+  <title>One Way Dream</title>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
   <header>
-    <h1>Game Dev</h1>
-    <nav>
+    <nav class="animated-gradient">
       <a href="index.html">Home</a>
-      <a href="progress.html">Dev Progress</a>
+      <a href="progress.html">Progress</a>
+      <a href="index.html">Downloads</a>
+      <a href="index.html">About</a>
+      <a href="index.html">Support</a>
     </nav>
   </header>
-
   <div class="container">
-    <h2>Game Development Progress</h2>
-    <div class="progress-container">
-      <div class="progress-bar" style="width: 45%;">45%</div>
-    </div>
-
-    <h3>Changelog</h3>
-    <ul class="changelog-list">
-      <li>✅ Project initialized</li>
-      <li>🎨 Basic player sprite added</li>
-      <li>🧠 Enemy AI (first version)</li>
-      <li>🌎 Level 1 terrain complete</li>
-      <li>💥 Collision system added</li>
-    </ul>
+    <h1 class="rainbow-text">Coming when it's ready</h1>
+    <p>A 2D adventure game is coming this year.</p>
   </div>
+  
+  <div class="theme-toggle" id="themeToggle">
+    <svg id="moon" viewBox="0 0 24 24" style="display: none;">
+      <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+    </svg>
+    <svg id="sun" viewBox="0 0 24 24">
+      <circle cx="12" cy="12" r="5"></circle>
+      <line x1="12" y1="1" x2="12" y2="3"></line>
+      <line x1="12" y1="21" x2="12" y2="23"></line>
+      <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+      <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+      <line x1="1" y1="12" x2="3" y2="12"></line>
+      <line x1="21" y1="12" x2="23" y2="12"></line>
+      <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+      <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+    </svg>
+  </div>
+  
+  <script>
+    function toggleDetails(item) {
+      const details = item.querySelector('.changelog-details');
+      if (details) {
+        details.style.display = (details.style.display === 'block') ? 'none' : 'block';
+      }
+    }
+    
+    document.addEventListener('DOMContentLoaded', function() {
+      const themeToggle = document.getElementById('themeToggle');
+      const moonIcon = document.getElementById('moon');
+      const sunIcon = document.getElementById('sun');
+      
+      const savedTheme = localStorage.getItem('theme') || 'dark';
+      document.documentElement.setAttribute('data-theme', savedTheme);
+      
+      updateThemeIcon(savedTheme);
+      
+      themeToggle.addEventListener('click', function() {
+        const currentTheme = document.documentElement.getAttribute('data-theme');
+        const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+        
+        document.documentElement.setAttribute('data-theme', newTheme);
+        localStorage.setItem('theme', newTheme);
+        
+        updateThemeIcon(newTheme);
+      });
+      
+      function updateThemeIcon(theme) {
+        if (theme === 'dark') {
+          moonIcon.style.display = 'none';
+          sunIcon.style.display = 'block';
+        } else {
+          moonIcon.style.display = 'block';
+          sunIcon.style.display = 'none';
+        }
+      }
+    });
+  </script>
 </body>
 </html>

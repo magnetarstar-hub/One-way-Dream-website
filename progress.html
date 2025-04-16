@@ -1,67 +1,130 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="dark">
 <head>
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Game Dev Progress</title>
-  <style>
-    body, html {
-      margin: 0;
-      padding: 0;
-      font-family: 'Segoe UI', sans-serif;
-      background: #111;
-      color: #fff;
-    }
-
-    .container {
-      padding: 2em;
-      max-width: 800px;
-      margin: auto;
-    }
-
-    .progress-container {
-      width: 100%;
-      background: #444;
-      border-radius: 10px;
-      margin: 1em 0;
-    }
-
-    .progress-bar {
-      height: 30px;
-      background-color: #00ff87;
-      border-radius: 10px;
-      line-height: 30px;
-      padding-left: 10px;
-      color: #111;
-      font-weight: bold;
-    }
-
-    .changelog-list {
-      list-style: none;
-      padding-left: 0;
-    }
-
-    .changelog-list li {
-      padding: 0.5em 0;
-      border-bottom: 1px solid #333;
-    }
-  </style>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
+  <header>
+    <nav class="animated-gradient">
+      <a href="index.html">Home</a>
+      <a href="progress.html">Progress</a>
+      <a href="downloads.html">Downloads</a>
+      <a href="about.html">About</a>
+      <a href="support.html">Support</a>
+    </nav>
+  </header>
   <div class="container">
-    <h1>Game Development Progress</h1>
+    <h1 class="rainbow-text">Game Development Progress</h1>
+    <p>All listed tasks are subject to change as development progresses</p>
     <div class="progress-container">
       <div class="progress-bar" style="width: 45%;">45%</div>
     </div>
+    <div class="task-lists">
+      <div class="task-column">
+        <h2>✅ Completed Tasks</h2>
+        <ul class="changelog-list">
+          <li onclick="toggleDetails(this)">
+            Project initialized
+            <div class="changelog-details">Setup of file structure, tools, and basic game engine logic.</div>
+          </li>
+          <li onclick="toggleDetails(this)">
+            Player movments and attacks
+            <div class="changelog-details">A simple movment and Attack Added.</div>
+          </li>
+          <li onclick="toggleDetails(this)">
+            Enemy AI (first version)
+            <div class="changelog-details">Patrol enemies move randomly</div>
+          </li>
+          <li onclick="toggleDetails(this)">
+            Level 1 terrain complete
+            <div class="changelog-details">Grass, rocks, and water tiles placed for the first map layout.</div>
+          </li>
+          <li onclick="toggleDetails(this)">
+            Collision system added
+            <div class="changelog-details">Player and enemies can't pass through obstacles.</div>
+          </li>
+          <li onclick="toggleDetails(this)">
+            Add inventory system
+            <div class="changelog-details">Backpack for collecting items, weapons, and potions.</div>
+          </li>
 
-    <h2>Changelog</h2>
-    <ul class="changelog-list">
-      <li>✅ Project initialized</li>
-      <li>🎨 Basic player sprite added</li>
-      <li>🧠 Enemy AI (first version)</li>
-      <li>🌎 Level 1 terrain complete</li>
-      <li>💥 Collision system added</li>
-    </ul>
+        </ul>
+      </div>
+      <div class="task-column">
+        <h2>🚧 Future Developments</h2>
+        <ul class="changelog-list">
+          <li onclick="toggleDetails(this)">
+            Add more sound effects and background music
+            <div class="changelog-details">Ambient and action sounds to enhance immersion.</div>
+          </li>
+          <li onclick="toggleDetails(this)">
+            Skill tree system
+            <div class="changelog-details">Player can unlock skills and upgrades via XP.</div>
+          </li>
+        </ul>
+      </div>
+    </div>
   </div>
+  
+  <div class="theme-toggle" id="themeToggle">
+    <svg id="moon" viewBox="0 0 24 24" style="display: none;">
+      <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+    </svg>
+    <svg id="sun" viewBox="0 0 24 24">
+      <circle cx="12" cy="12" r="5"></circle>
+      <line x1="12" y1="1" x2="12" y2="3"></line>
+      <line x1="12" y1="21" x2="12" y2="23"></line>
+      <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+      <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+      <line x1="1" y1="12" x2="3" y2="12"></line>
+      <line x1="21" y1="12" x2="23" y2="12"></line>
+      <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+      <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+    </svg>
+  </div>
+  
+  <script>
+    function toggleDetails(item) {
+      const details = item.querySelector('.changelog-details');
+      if (details) {
+        details.style.display = (details.style.display === 'block') ? 'none' : 'block';
+      }
+    }
+    
+    document.addEventListener('DOMContentLoaded', function() {
+      const themeToggle = document.getElementById('themeToggle');
+      const moonIcon = document.getElementById('moon');
+      const sunIcon = document.getElementById('sun');
+      
+      const savedTheme = localStorage.getItem('theme') || 'dark';
+      document.documentElement.setAttribute('data-theme', savedTheme);
+      
+      updateThemeIcon(savedTheme);
+      
+      themeToggle.addEventListener('click', function() {
+        const currentTheme = document.documentElement.getAttribute('data-theme');
+        const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+        
+        document.documentElement.setAttribute('data-theme', newTheme);
+        localStorage.setItem('theme', newTheme);
+        
+        updateThemeIcon(newTheme);
+      });
+      
+      function updateThemeIcon(theme) {
+        if (theme === 'dark') {
+          moonIcon.style.display = 'none';
+          sunIcon.style.display = 'block';
+        } else {
+          moonIcon.style.display = 'block';
+          sunIcon.style.display = 'none';
+        }
+      }
+    });
+  </script>
 </body>
 </html>
