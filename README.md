@@ -24,5 +24,5 @@ Open a Pull Request
 Check out (https://onewaydream.xyz)
 
 <div align="center">
-  <sub>Coming when it's ready. Built with ❤️ by magnetarstar Enthusiasts</sub>
+  <sub>Coming when it's ready. Built with ❤️ by magnetarstar </sub>
 </div>
