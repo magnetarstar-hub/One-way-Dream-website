@@ -1,3 +1,4 @@
+
 :root {
   --bg-color: #1e1e1e;
   --header-bg: #1e1e1e;
@@ -318,5 +319,5 @@ canvas{
     height: 100%;
     display: block;
     image-rendering: pixelated;
-    filter: blur(50px); 
+    filter: blur(100px); 
 }
