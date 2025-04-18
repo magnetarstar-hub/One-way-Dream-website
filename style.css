@@ -33,6 +33,11 @@
 }
 
 body, html {
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  height: 100%;
+  background: black;
   min-height: 100vh;
   background-color: var(--bg-color);
   display: flex;
@@ -297,4 +302,21 @@ li:active {
   100% {
     background-position: 150% 0;
   }
+}
+
+canvas{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    display: block;
+    image-rendering: pixelated;
+}
+
+#bg {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    display: block;
+    image-rendering: pixelated;
+    filter: blur(50px); 
 }
